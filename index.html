@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cors Test</title>
+</head>
+<body>
+<script>
+
+var req = new XMLHttpRequest();
+
+req.onreadystatechange = function() {
+     if(req.readyState==4 && req.status==200) {
+        document.getElementById("div1").innerHTML="<h1>Cors Test Succeeded.</h1><br/><br/>";
+        document.getElementById("div1").innerHTML+=req.responseText;
+     } else {
+     	document.getElementById("div1").innerHTML="<h1>Cors Test Failed. See console.log for details.</h1><br/><br/>";
+        document.getElementById("div1").innerHTML+=JSON.stringify(req);
+     }
+}
+
+var resource = location.hash.substring(1);
+req.open("GET",resource,true);
+req.send();
+</script>
+
+<body>
+<div id="div1"></div>
+
+</body>
+</html>
